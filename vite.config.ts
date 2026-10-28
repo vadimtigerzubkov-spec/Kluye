@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
-import { tanstackStart } from '@tanstack/react-start/plugin'
+import { TanStackStartVite } from '@tanstack/start/config'
 
 export default defineConfig({
   plugins: [
-    tanstackStart(),
+    TanStackStartVite(),
   ],
 })
