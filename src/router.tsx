@@ -1,23 +1,20 @@
-import { createRouter } from '@tanstack/react-router'
-import { RouteErrorPage } from './components/error-pages'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { Toaster } from '../components/ui/sonner'
+import { NotFoundPage, RouteErrorPage } from '../components/error-pages'
 
-// Import the generated route tree
-import { routeTree } from './routeTree.gen'
+export const Route = createRootRoute({
+  notFoundComponent: NotFoundPage,
+  errorComponent: RouteErrorPage,
+  component: RootComponent,
+})
 
-// Create a new router instance
-export const getRouter = () => {
-  const router = createRouter({
-    routeTree,
-    defaultErrorComponent: RouteErrorPage,
-    scrollRestoration: true,
-    defaultPreloadStaleTime: 0,
-  })
-
-  return router
-}
-
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: ReturnType<typeof getRouter>
-  }
+function RootComponent() {
+  return (
+    <>
+      <Outlet />
+      <Toaster />
+      {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
+    </>
+  )
 }
