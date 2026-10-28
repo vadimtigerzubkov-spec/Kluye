@@ -1,8 +1,8 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
-import { Toaster } from '@/components/ui/sonner'
-import { TooltipProvider } from '@/components/ui/tooltip'
-import { NotFoundPage } from '@/components/error-pages'
+import { Toaster } from '../components/ui/sonner'
+import { TooltipProvider } from '../components/ui/tooltip'
+import { NotFoundPage } from '../components/error-pages'
 
 import '../styles.css'
 
