@@ -1,5 +1,5 @@
 import { createRouter } from '@tanstack/react-router'
-import { RouteErrorPage } from '@/components/error-pages'
+import { RouteErrorPage } from './components/error-pages'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
