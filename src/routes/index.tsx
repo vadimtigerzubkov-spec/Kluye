@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useState } from 'react'
 import { AlertTriangle, CalendarDays, Fish as FishIcon, RefreshCw } from 'lucide-react'
 
-import { PlaceSearch } from '@/components/forecast/place-search'
+import { PlaceSearch } from '../components/forecast/place-search'
 import {
   Conditions,
   HourChart,
@@ -11,16 +11,16 @@ import {
   Tips,
   WindowSummary,
   scoreColor,
-} from '@/components/forecast/results'
-import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Skeleton } from '@/components/ui/skeleton'
-import { FISH, fishById } from '@/lib/fish'
-import type { FishId } from '@/lib/fish'
-import { buildDay, hh, localToday, summarizeWindow, upcomingDays } from '@/lib/forecast'
-import { fetchWeather } from '@/lib/weather'
-import type { Place, WeatherData } from '@/lib/weather'
-import { cn } from '@/lib/utils'
+} from '../components/forecast/results'
+import { Button } from '../components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select'
+import { Skeleton } from '../components/ui/skeleton'
+import { FISH, fishById } from '../lib/fish'
+import type { FishId } from '../lib/fish'
+import { buildDay, hh, localToday, summarizeWindow, upcomingDays } from '../lib/forecast'
+import { fetchWeather } from '../lib/weather'
+import type { Place, WeatherData } from '../lib/weather'
+import { cn } from '../lib/utils'
 
 export const Route = createFileRoute('/')({
   component: Home,
