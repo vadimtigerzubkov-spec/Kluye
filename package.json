@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --port 3000",
-    "build": "vite build",
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview",
+    "preview": "vinxi preview",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -38,11 +39,11 @@
     "react-hook-form": "7.90.0",
     "sonner": "2.0.8",
     "tailwind-merge": "3.7.0",
+    "vinxi": "^0.5.0",
     "zod": "4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@netlify/vite-plugin-tanstack-start": "1.3.19",
     "@tailwindcss/vite": "4.3.3",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
