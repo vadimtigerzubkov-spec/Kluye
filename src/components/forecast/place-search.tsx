@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { LocateFixed, MapPin, Search } from 'lucide-react'
 
 import { Button } from '../ui/button'
-import { Input } from '@/components/ui/input'
-import { searchPlaces } from '@/lib/weather'
-import type { Place } from '@/lib/weather'
+import { Input } from '../ui/input'
+import { searchPlaces } from '../../lib/weather'
+import type { Place } from '../../lib/weather'
 import { toast } from 'sonner'
 
 export function PlaceSearch({
