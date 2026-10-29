@@ -1,7 +1,17 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from '@tanstack/react-router'
-import router from './router'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+
+// Створюємо екземпляр роутера прямо тут
+const router = createRouter({ routeTree })
+
+// Реєструємо роутер для максимальної безпеки типів (TypeScript)
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
