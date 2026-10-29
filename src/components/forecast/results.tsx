@@ -13,13 +13,13 @@ import {
   Wind,
 } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { hh, hm, verdictFor } from '@/lib/forecast'
-import type { DayForecast, Factor, HourScore, WindowForecast } from '@/lib/forecast'
-import type { FishProfile } from '@/lib/fish'
-import { weatherLabel, windDirName } from '@/lib/weather'
-import { cn } from '@/lib/utils'
+import { Badge } from '../ui/badge'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
+import { hh, hm, verdictFor } from '../../lib/forecast'
+import type { DayForecast, Factor, HourScore, WindowForecast } from '../../lib/forecast'
+import type { FishProfile } from '../../lib/fish'
+import { weatherLabel, windDirName } from '../../lib/weather'
+import { cn } from '../../lib/utils'
 
 export function scoreColor(score: number) {
   const tone = verdictFor(score).tone
@@ -271,92 +271,4 @@ export function Conditions({ day, result }: { day: DayForecast; result: WindowFo
         <span className="text-sm font-normal text-muted-foreground">(найкраща година вікна)</span>
       </h3>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-        <Stat icon={Thermometer} label="Повітря" value={`${Math.round(w.temp)} °C`} hint={weatherLabel(w.code)} />
         <Stat
-          icon={Droplets}
-          label="Вода (орієнтовно)"
-          value={`≈${Math.round(day.waterTemp)} °C`}
-          hint="за середньою температурою 3 діб"
-        />
-        <Stat
-          icon={Gauge}
-          label="Тиск"
-          value={`${Math.round(w.pressure * 0.750062)} мм`}
-          hint={`${Math.round(w.pressure)} гПа · за добу ${trend > 0 ? '+' : ''}${trend.toFixed(1)}`}
-        />
-        <Stat
-          icon={Wind}
-          label="Вітер"
-          value={`${w.wind.toFixed(1)} м/с`}
-          hint={`${windDirName(w.windDir)}, пориви ${Math.round(w.gust)}`}
-        />
-        <Stat
-          icon={CloudRain}
-          label="Опади"
-          value={`${w.precipProb}%`}
-          hint={`${w.precip.toFixed(1)} мм · хмарність ${Math.round(w.cloud)}%`}
-        />
-        <Stat
-          icon={Moon}
-          label="Місяць"
-          value={day.moon.name}
-          hint={`освітлено ${Math.round(day.moon.fraction * 100)}%`}
-        />
-        <Stat icon={Sunrise} label="Схід сонця" value={hm(day.sun.sunrise)} />
-        <Stat icon={Sunset} label="Захід сонця" value={hm(day.sun.sunset)} />
-      </div>
-    </section>
-  )
-}
-
-export function Solunar({ day }: { day: DayForecast }) {
-  return (
-    <section className="rounded-2xl border bg-card p-6">
-      <h3 className="flex items-center gap-2 font-display text-lg font-bold">
-        <Clock className="size-5 text-primary" /> Солунарні періоди
-      </h3>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Години, коли за положенням місяця риба зазвичай активніша.
-      </p>
-      <ul className="mt-4 space-y-2">
-        {day.solunar.map((p) => (
-          <li key={`${p.kind}-${p.center}`} className="flex items-center justify-between gap-3 text-sm">
-            <span className="flex items-center gap-2">
-              <Badge variant={p.kind === 'major' ? 'default' : 'outline'}>
-                {p.kind === 'major' ? 'головний' : 'другорядний'}
-              </Badge>
-              {p.label}
-            </span>
-            <span className="tabular-nums text-muted-foreground">
-              {hm(Math.max(0, p.start))}–{hm(Math.min(23.99, p.end))}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-export function Tips({ fish, result }: { fish: FishProfile; result: WindowForecast }) {
-  return (
-    <section className="rounded-2xl border bg-card p-6">
-      <h3 className="flex items-center gap-2 font-display text-lg font-bold">
-        <Fish className="size-5 text-primary" /> Що брати з собою
-      </h3>
-      <p className="mt-4 text-sm font-medium">Приманки й насадки</p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {result.baits.map((b) => (
-          <Badge key={b} variant="secondary" className="text-sm">
-            {b}
-          </Badge>
-        ))}
-      </div>
-      <p className="mt-5 text-sm font-medium">Поради</p>
-      <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted-foreground">
-        {fish.tips.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-    </section>
-  )
-}
